@@ -40,7 +40,6 @@ import (
 	imageutils "k8s.io/kubernetes/test/utils/image"
 
 	"sigs.k8s.io/scheduler-plugins/apis/config"
-	"sigs.k8s.io/scheduler-plugins/apis/config/v1beta2"
 	"sigs.k8s.io/scheduler-plugins/pkg/trimaran/loadvariationriskbalancing"
 	"sigs.k8s.io/scheduler-plugins/test/util"
 )
@@ -125,7 +124,7 @@ func TestLoadVariationRiskBalancingPlugin(t *testing.T) {
 		Name: loadvariationriskbalancing.Name,
 		Args: &config.LoadVariationRiskBalancingArgs{
 			TrimaranSpec:       config.TrimaranSpec{WatcherAddress: server.URL},
-			SafeVarianceMargin: v1beta2.DefaultSafeVarianceMargin,
+			SafeVarianceMargin: 0,
 		},
 	})
 

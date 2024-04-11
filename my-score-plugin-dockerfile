@@ -1,0 +1,5 @@
+FROM centos
+
+COPY bin/score /usr/local/bin
+
+WORKDIR /usr/local/bin

@@ -150,3 +150,14 @@ type NodeResourceTopologyMatchArgs struct {
 
 // PreemptionTolerationArgs reuses DefaultPluginArgs.
 type PreemptionTolerationArgs schedulerconfigv1beta3.DefaultPreemptionArgs
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// configure the prometheus
+type MyScoreArgs struct {
+	metav1.TypeMeta `json:",inline"`
+
+	Address *string `json:"promtheusAddress,omitempty"`
+
+	TimeInSecond *int64 `json:"timeDeltInSecond,omitempty"`
+}

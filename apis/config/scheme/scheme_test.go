@@ -25,11 +25,11 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/kube-scheduler/config/v1beta3"
 	schedconfig "k8s.io/kubernetes/pkg/scheduler/apis/config"
 	"k8s.io/kubernetes/pkg/scheduler/apis/config/testing/defaults"
 
 	"sigs.k8s.io/scheduler-plugins/apis/config"
-	"sigs.k8s.io/scheduler-plugins/apis/config/v1beta2"
 	"sigs.k8s.io/scheduler-plugins/pkg/coscheduling"
 	"sigs.k8s.io/scheduler-plugins/pkg/noderesources"
 	"sigs.k8s.io/scheduler-plugins/pkg/preemptiontoleration"
@@ -143,8 +143,8 @@ profiles:
 										InsecureSkipVerify: false,
 									},
 									WatcherAddress: "http://deadbeef:2020"},
-								SafeVarianceMargin:      v1beta2.DefaultSafeVarianceMargin,
-								SafeVarianceSensitivity: v1beta2.DefaultSafeVarianceSensitivity,
+								SafeVarianceMargin:      0,
+								SafeVarianceSensitivity: 0,
 							},
 						},
 						{
@@ -255,8 +255,8 @@ profiles:
 										Token:   "",
 									},
 									WatcherAddress: ""},
-								SafeVarianceMargin:      v1beta2.DefaultSafeVarianceMargin,
-								SafeVarianceSensitivity: v1beta2.DefaultSafeVarianceSensitivity,
+								SafeVarianceMargin:      0,
+								SafeVarianceSensitivity: 0,
 							},
 						},
 						{
@@ -349,7 +349,7 @@ func TestCodecsEncodePluginConfig(t *testing.T) {
 		// v1beta2 tests
 		{
 			name:    "v1beta2 plugins",
-			version: v1beta2.SchemeGroupVersion,
+			version: v1beta3.SchemeGroupVersion,
 			obj: &schedconfig.KubeSchedulerConfiguration{
 				Profiles: []schedconfig.KubeSchedulerProfile{
 					{
@@ -397,8 +397,8 @@ func TestCodecsEncodePluginConfig(t *testing.T) {
 											InsecureSkipVerify: false,
 										},
 										WatcherAddress: "http://deadbeef:2020"},
-									SafeVarianceMargin:      v1beta2.DefaultSafeVarianceMargin,
-									SafeVarianceSensitivity: v1beta2.DefaultSafeVarianceSensitivity,
+									SafeVarianceMargin:      0,
+									SafeVarianceSensitivity: 0,
 								},
 							},
 						},

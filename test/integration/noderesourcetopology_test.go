@@ -120,7 +120,7 @@ func TestTopologyMatchPlugin(t *testing.T) {
 	cfg.Profiles[0].PluginConfig = append(cfg.Profiles[0].PluginConfig, schedapi.PluginConfig{
 		Name: noderesourcetopology.Name,
 		Args: &scheconfig.NodeResourceTopologyMatchArgs{
-			ScoringStrategy: scheconfig.ScoringStrategy{Type: scheconfig.MostAllocated},
+			ScoringStrategy: &scheconfig.ScoringStrategy{Type: scheconfig.MostAllocated},
 		},
 	})
 	cfg.Profiles = append(cfg.Profiles,
@@ -1033,7 +1033,7 @@ func makeProfileByPluginArgs(
 
 func makeResourceAllocationScoreArgs(strategy *scheconfig.ScoringStrategy) *scheconfig.NodeResourceTopologyMatchArgs {
 	return &scheconfig.NodeResourceTopologyMatchArgs{
-		ScoringStrategy: *strategy,
+		ScoringStrategy: strategy,
 	}
 }
 

@@ -147,10 +147,19 @@ type NodeResourceTopologyMatchArgs struct {
 	metav1.TypeMeta
 
 	// ScoringStrategy a scoring model that determine how the plugin will score the nodes.
-	ScoringStrategy ScoringStrategy
+	ScoringStrategy *ScoringStrategy
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // PreemptionTolerationArgs reuses DefaultPluginArgs.
 type PreemptionTolerationArgs schedconfig.DefaultPreemptionArgs
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// configure the prometheus
+type MyScoreArgs struct {
+	metav1.TypeMeta
+	Address      string
+	TimeInSecond int64
+}

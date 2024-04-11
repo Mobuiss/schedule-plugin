@@ -18,10 +18,12 @@ package main
 
 import (
 	"os"
+
 	"k8s.io/component-base/cli"
 	"k8s.io/kubernetes/cmd/kube-scheduler/app"
-	
-	"sigs.k8s.io/scheduler-plugins/pkg/plugin"
+
+	"sigs.k8s.io/scheduler-plugins/pkg/plugin/filter"
+	"sigs.k8s.io/scheduler-plugins/pkg/plugin/score"
 
 	// Ensure scheme package is initialized.
 	_ "sigs.k8s.io/scheduler-plugins/apis/config/scheme"
@@ -32,8 +34,8 @@ func main() {
 	// Later they can consist of scheduler profile(s) and hence
 	// used by various kinds of workloads.
 	command := app.NewSchedulerCommand(
-		app.WithPlugin(myFilter.Name,myFilter.New),
-		
+		app.WithPlugin(filter.Name, filter.New),
+		app.WithPlugin(score.Name, score.New),
 	)
 
 	code := cli.Run(command)
